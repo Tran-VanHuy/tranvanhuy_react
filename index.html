@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    body {
+
+        width: 100%;
+        height: 1000px;
+    }
+
+    .timeOut{
+        
+        line-height: 100%;
+        text-align: center;
+    }
+</style>
+<script language="">
+
+    let h = null;
+    let m = null;
+    let s = null;
+
+    let timeOut = null;
+
+    function start(){
+
+        if(h === null){
+
+            h = parseInt(document.getElementById('h_val').value);
+            m = parseInt(document.getElementById('m_val').value);
+            s = parseInt(document.getElementById('s_val').value);
+        }
+        if(s > 60){
+
+            alert("Không hợp lệ vui long nhập lại");
+           
+            location.reload()
+        }
+        else if(s === -1){
+
+            m -= 1;
+            s = 59;
+           
+        }
+
+        if(m > 60){
+
+            alert("Không hợp lệ");
+            location.reload()
+        }
+        else if(m === -1){
+            h -= 1;
+            m  = 59;
+        }
+
+        if(h === -1){
+
+            clearTimeout(timeOut);
+            alert('hết giờ');
+            return false;
+        }
+       
+            document.getElementById('h').innerText = "Giờ" +  h.toString();
+            document.getElementById('m').innerText = m.toString();
+            document.getElementById('s').innerText = s.toString();
+    
+        timeout = setTimeout(function(){
+            s--;
+            start();
+
+        }, 1000)
+    }
+
+    function stop(){
+                clearTimeout(timeout);
+            }
+    
+</script>
+<body>
+    <div class="timeOut">
+        <div>
+            <strong>
+                Nhập thông tin ban đầu: <br/>
+            </strong>
+            <input type="text" id="h_val" placeholder="Giờ" value=""/> <br/>
+            <input type="text" id="m_val" placeholder="Phút" value=""/> <br/>
+            <input type="text" id="s_val" placeholder="Giây" value="" style="margin-left: 96px;"/>
+            <input type="button" value="Start" onclick="start()"/>
+            <input type="button" value="Stop" onclick="stop()"/>  <br/> <br/>
+        </div>
+        
+        <div>
+            <span id="h">Giờ</span> :
+            <span id="m">Phút</span> :
+            <span id="s">Giây</span> 
+        </div>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+   .body{
+
+       width: 100%;
+       height: 100%;
+       background: brown;
+   }
+
+   .content{
+
+    text-align: center;
+   }
+
+   .thanhtien1{
+
+    background: antiquewhite;
+    width: 230px;
+    height: 100px;
+    line-height: 100px;
+    margin-left: 41%;
+   }
+</style>
+<script >
+
+    const currencyRate =  [
+  {
+    id: 1,
+    name: "Dollar",
+    shorten: "USD",
+    rate: 23000,
+  },
+  {
+    id: 2,
+    name: "Euro",
+    shorten: "EU",
+    rate: 25000,
+  },
+  {
+    id: 3,
+    name: "Viet Nam Dong",
+    shorten: "VND",
+    rate: 1,
+  }
+]
+
+ const data = function data(money){
+
+    var money = parseInt(document.getElementById('tien_te').value);
+    return money;
+ }
+
+ function validateSelectBox(obj)
+{
+
+    // Lấy danh sách các options
+    var options = obj.children;
+ 
+    // Biến lưu trữ các chuyên mục đa chọn
+    var html = '';
+    
+    // lặp qua từng option và kiểm tra thuộc tính selected
+    for (var i = 0; i < options.length; i++){
+        if (options[i].selected){
+            html += options[i].value;
+        }
+    }
+
+    if(html === currencyRate[0].shorten){
+
+        kq = data() * currencyRate[0].rate; 
+    }
+
+    if(html === currencyRate[1].shorten){
+
+        kq = data() * currencyRate[1].rate;
+    }
+
+    if(html === currencyRate[2].shorten){
+
+        kq = data() * currencyRate[2].rate;
+       
+    }
+    document.getElementById('KQ').innerHTML = kq;
+    console.log(kq);
+}
+
+</script>
+<body class="body">
+    <div class="content">
+        <input type="number" id="tien_te" value="1">
+        <select  onchange="validateSelectBox(this)">
+            <option value="USD" id = "USD">Loại tiền tệ</option>
+            <option value="USD" id = "USD">USD</option>
+            <option value="EU" id = "EU">EU</option>
+            <option value="VND" id = "VND">VND</option>
+        </select>
+        <span> ==> </span>
+        <select  onchange="">
+            <option value="VND" id = "VND">VND</option>
+        </select>
+    
+        <button onclick="data()">data</button>
+    </br>
+</br>
+</br>
+    <div class="content1">
+        <div class="thanhtien1">
+            <span class="thanhtien" id = 'KQ'>Thành tiền</span>
+        </div>
+    </div>
+   
+    </div>
+ 
+    
+</body>
+</html>
